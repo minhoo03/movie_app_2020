@@ -1,3 +1,3 @@
 # Movie App 2020
 
-React Js Fundamentals Course (2020 Update)
+React, Javascript aysnc / await... and axios (2020/09/21)
