@@ -1,48 +1,20 @@
 import React from 'react';
-import axios from 'axios';
-import Movie from './Movie'
+import { HashRouter, Route } from "react-router-dom"
+import About from "./routes/About"
+import Home from "./routes/Home"
+import Detail from "./routes/Detail"
+import Navigation from "./routes/Navigation"
 
-class App extends React.Component{
-  
-  state = {
-    isLoading : true,
-    movies: []
-  }
-
-  getmovies = async () => {
-    const {
-      data: {
-        data: {movies}
-      }
-    } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating")
-    //모든 data가 준비 되었을 경우 state 변경 후 render (삼항연산자로 로딩 구현)
-    this.setState({ movies, isLoading: false })
-    //state.movies == const movies
-  }
-
-  componentDidMount(){
-    this.getmovies()
-  }
-
-  render(){
-    const { isLoading, movies } = this.state
-
-    // npm install axios
-    return (
-      <div>
-          {isLoading ? "Loading..." : movies.map(movie => (
-            <Movie 
-              key={movie.id}
-              id={movie.id} 
-              year={movie.year}
-              title={movie.title}
-              summary={movie.summary}
-              poster={movie.medium_cover_image}
-            />
-          ))}
-      </div>
-    )
-  }
+//exact={true} 오로지 이 주소에만 렌더링
+function App() {
+  return (
+    <HashRouter>
+      <Navigation />
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/movie-detail" component={Detail} />
+    </HashRouter>
+  )
 }
 
-export default App;
+export default App
