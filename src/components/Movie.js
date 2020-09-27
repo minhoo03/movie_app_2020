@@ -5,10 +5,11 @@ import "./Movie.css"
 
 // state가 필요 없을 경우 class component가 될 필요 없음
 
+// 클릭시 다음 path의 component로 props를 보내며 이동
 function Movie({ id, year, title, summary, poster, genres }) {
     return (
         <Link to={{
-            pathname: "/movie-detail",
+            pathname: `movies/${id}`,
             state: {
                 year,
                 title,
