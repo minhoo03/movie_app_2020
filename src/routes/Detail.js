@@ -6,6 +6,9 @@ import React from "react"
 class Detail extends React.Component {
 // 카드를 클릭시에만 Router로 정보 전달하므로 url 입력 접속시 state == undefined
 // react-router-dom에 의해 생성된 props인데 url 관리는 history에서 한다
+
+
+
     componentDidMount(){
         const { location, history } = this.props
         if(location.state === undefined){
@@ -21,12 +24,13 @@ class Detail extends React.Component {
 
     render(){
         const { location } = this.props
-        
+
         if(location.state){
             return (
                 <div>
                     <div>{location.state.title}</div>
                     <img src={location.state.poster} alt={location.state.title} title={location.state.title} />
+
                 </div>
             )
         } else{
